@@ -279,7 +279,7 @@ def scytale_cipher(message, shift):
         
         for i in range(len(extended_message)):
             
-            index = (i // shift) + (len(message) // shift) * (i % shift)
+            index = (i // shift) + (len(extended_message) // shift) * (i % shift)
             
             scytale_cipher = scytale_cipher + extended_message[index]
             
