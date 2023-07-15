@@ -34,16 +34,17 @@ def relationship_status(from_member, to_member, social_graph):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    if from_member in social_graph:
-        if from_member in social_graph.get(to_member, {}).get('following', []):
-            if to_member in social_graph.get(from_member, {}).get('following', []):
-                return "friends"
-            else:
-                return "followed by"
-    elif to_member in social_graph.get(from_member, {}).get('following', []):
-        return "follower"
-    else:
-        return "no relationship"
+    
+    if from_member not in social_graph[to_member]["following"] and to_member not in social_graph[from_member]["following"]:
+        str = "no relationship"
+    elif from_member in social_graph[to_member]["following"] and to_member in social_graph[from_member]["following"]:
+        str = "friends"
+    elif from_member in social_graph[to_member]["following"]:
+        str = "followed by"
+    elif to_member in social_graph[from_member]["following"]:
+        str = "follower"
+        
+    return str
     
 
 def tic_tac_toe(board):
@@ -73,198 +74,85 @@ def tic_tac_toe(board):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    size = len(board)
-    
-    # Horizontal
-    
-    for row in board:
-        if all(cell == row[0] and cell != '' for cell in row):
-            return row[0]
-    
-    # Vertical
-    
-    if len(board[0]) == 3:
-    
-        first_column = []
-        for row in board:
-            first_column.append(row[0])
-        # if
-        if all(cell == 'X' for cell in first_column):
-            print('X')
-        elif all(cell == 'O' for cell in first_column):
-            print('O')
-
-        second_column = []
-        for row in board:
-            second_column.append(row[1])
-        # if
-        if all(cell == 'X' for cell in second_column):
-            print('X')
-        elif all(cell == 'O' for cell in second_column):
-            print('O')
-
-        third_column = []
-        for row in board:
-            third_column.append(row[2])
-        # if
-        if all(cell == 'X' for cell in third_column):
-            print('X')
-        elif all(cell == 'O' for cell in third_column):
-            print('O')
+    if len(board) == 3:
+        #column and rows
+        for column in range(0,3):
+            if board[0][column] == board[1][column] == board[2][column] != '':
+                str = board[0][column]
+                return str
         
-    elif len(board[0]) == 4:
-
-        first_column = []
-        for row in board:
-            first_column.append(row[0])
-        # if
-        if all(cell == 'X' for cell in first_column):
-            print('X')
-        elif all(cell == 'O' for cell in first_column):
-            print('O')
-
-        second_column = []
-        for row in board:
-            second_column.append(row[1])
-        # if
-        if all(cell == 'X' for cell in second_column):
-            print('X')
-        elif all(cell == 'O' for cell in second_column):
-            print('O')
-
-        third_column = []
-        for row in board:
-            third_column.append(row[2])
-        # if
-        if all(cell == 'X' for cell in third_column):
-            print('X')
-        elif all(cell == 'O' for cell in third_column):
-            print('O')
-
-        fourth_column = []
-        for row in board:
-            fourth_column.append(row[3])
-        # if
-        if all(cell == 'X' for cell in fourth_column):
-            print('X')
-        elif all(cell == 'O' for cell in fourth_column):
-            print('O')
-
-    elif len(board[0]) == 5:
-
-        first_column = []
-        for row in board:
-            first_column.append(row[0])
-        # if
-        if all(cell == 'X' for cell in first_column):
-            print('X')
-        elif all(cell == 'O' for cell in first_column):
-            print('O')
-
-        second_column = []
-        for row in board:
-            second_column.append(row[1])
-        # if
-        if all(cell == 'X' for cell in second_column):
-            print('X')
-        elif all(cell == 'O' for cell in second_column):
-            print('O')
-
-        third_column = []
-        for row in board:
-            third_column.append(row[2])
-        # if
-        if all(cell == 'X' for cell in third_column):
-            print('X')
-        elif all(cell == 'O' for cell in third_column):
-            print('O')
-
-        fourth_column = []
-        for row in board:
-            fourth_column.append(row[3])
-        # if
-        if all(cell == 'X' for cell in fourth_column):
-            print('X')
-        elif all(cell == 'O' for cell in fourth_column):
-            print('O')
-
-        fifth_column = []
-        for row in board:
-            fifth_column.append(row[4])
-        # if
-        if all(cell == 'X' for cell in fifth_column):
-            print('X')
-        elif all(cell == 'O' for cell in fifth_column):
-            print('O')
-
-    elif len(board[0]) == 6:
-
-        first_column = []
-        for row in board:
-            first_column.append(row[0])
-        # if
-        if all(cell == 'X' for cell in first_column):
-            print('X')
-        elif all(cell == 'O' for cell in first_column):
-            print('O')
-
-        second_column = []
-        for row in board:
-            second_column.append(row[1])
-        # if
-        if all(cell == 'X' for cell in second_column):
-            print('X')
-        elif all(cell == 'O' for cell in second_column):
-            print('O')
-
-        third_column = []
-        for row in board:
-            third_column.append(row[2])
-        # if
-        if all(cell == 'X' for cell in third_column):
-            print('X')
-        elif all(cell == 'O' for cell in third_column):
-            print('O')
-
-        fourth_column = []
-        for row in board:
-            fourth_column.append(row[3])
-        # if
-        if all(cell == 'X' for cell in fourth_column):
-            print('X')
-        elif all(cell == 'O' for cell in fourth_column):
-            print('O')
-
-        fifth_column = []
-        for row in board:
-            fifth_column.append(row[4])
-        # if
-        if all(cell == 'X' for cell in fifth_column):
-            print('X')
-        elif all(cell == 'O' for cell in fifth_column):
-            print('O')
-
-        sixth_column = []
-        for row in board:
-            sixth_column.append(row[5])
-        # if
-        if all(cell == 'X' for cell in sixth_column):
-            print('X')
-        elif all(cell == 'O' for cell in sixth_column):
-            print('O')
+        for row in range(0,3):
+            if board[row][0] == board[row][1] == board[row][2] != '':
+                str = board[row][0]
+                return str
+        
+        #diagonals
+        if board[0][0] == board[1][1] == board[2][2] != '':
+            str = board[0][0]
+            return str
+        elif board[0][2] == board[1][1] == board[2][0] != '':
+            str = board[0][2]
+            return str
+        
+    if len(board) == 4:
+        #column and rows
+        for column in range(0,4):
+            if board[0][column] == board[1][column] == board[2][column] == board[3][column] != '':
+                str = board[0][column]
+                return str
+        for row in range(0,4):
+            if board[row][0] == board[row][1] == board[row][2] == board[row][3] != '':
+                str = board[row][0]
+                return str
+        
+        #diagonals
+        if board[0][0] == board[1][1] == board[2][2] == board[3][3] != '':
+            str = board[0][0]
+            return str
+        elif board[0][3] == board[1][2] == board[2][1] == board[3][0] != '':
+            str = board[0][3]
+            return str
+        
+    if len(board) == 5:
+        #column and rows
+        for column in range(0,5):
+            if board[0][column] == board[1][column] == board[2][column] == board[3][column] == board[4][column] != '':
+                str = board[0][column]
+                return str
+        for row in range(0,5):
+            if board[row][0] == board[row][1] == board[row][2] == board[row][3] == board[row][4] != '':
+                str = board[row][0]
+                return str
+        
+        #diagonals
+        if board[0][0] == board[1][1] == board[2][2] == board[3][3] == board[4][4] != '':
+            str = board[0][0]
+            return str
+        elif board[0][4] == board[1][3] == board[2][2] == board[3][1] == board[4][0] != '':
+            str = board[0][4]
+            return str
     
-    # Diagonal
+    if len(board) == 6:
+        #column and rows
+        for column in range(0,6):
+            if board[0][column] == board[1][column] == board[2][column] == board[3][column] == board[4][column] == board[5][column] != '':
+                str = board[0][column]
+                return str
+        for row in range(0,6):
+            if board[row][0] == board[row][1] == board[row][2] == board[row][3] == board[row][4] == board[row][5] != '':
+                str = board[row][0]
+                return str
+        
+        #diagonals
+        if board[0][0] == board[1][1] == board[2][2] == board[3][3] == board[4][4] == board[5][5] != '':
+            str = board[0][0]
+            return str
+        elif board[0][5] == board[1][4] == board[2][3] == board[3][2] == board[4][1] == board[5][0] != '':
+            str = board[0][5]
+            return str
     
-    diagonal1 = [board[i][i] for i in range(size)]
-    diagonal2 = [board[i][size - 1 - i] for i in range(size)]
-    if all(cell == diagonal1[0] and cell != '' for cell in diagonal1):
-        return diagonal1[0]
-    if all(cell == diagonal2[0] and cell != '' for cell in diagonal2):
-        return diagonal2[0]
-    
-    # None
-    
-    return "NO WINNER"
+    str = "NO WINNER"
+    return str
 
 def eta(first_stop, second_stop, route_map):
     '''ETA.
@@ -298,17 +186,29 @@ def eta(first_stop, second_stop, route_map):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    legs = route_map
+    routes = list(route_map.keys())
+    time = list(route_map.values())
+
+    int = 0
+    restart = True
     
-    total_time = 0
-    current_stop = first_stop
-    
-    while current_stop != second_stop:
-        leg = legs.get((current_stop, second_stop))
-        if leg is None:
-            return "Invalid route"
-        
-        total_time = total_time + leg['travel_time_mins']
-        current_stop = second_stop
-    
-    return total_time
+    while restart == True:
+        for x in range(0,len(routes)):
+            if first_stop == routes[x][0] and second_stop == routes[x][1] and int == 0: #stops loop if second_stop is within the same key
+                int += time[x]["travel_time_mins"]
+                break
+
+            elif first_stop == routes[x][0]: 
+                int += time[x]["travel_time_mins"]
+                continue
+
+            if int != 0: #to avoid adding routes before starting point
+                if second_stop != routes[x][1]:
+                    int += time[x]["travel_time_mins"]
+
+                elif second_stop == routes[x][1]:
+                    int += time[x]["travel_time_mins"]
+                    restart = False
+                    break  
+            
+    return int
